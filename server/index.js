@@ -9,6 +9,8 @@ require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') }
 const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
+const clothingRoutes = require('./routes/clothing');
+const outfitRoutes = require('./routes/outfits');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -47,6 +49,10 @@ app.get('/api/health', (req, res) => {
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
+
+// Protected API routes (require Authorization: Bearer <token>)
+app.use('/api/clothing', clothingRoutes);
+app.use('/api/outfits', outfitRoutes);
 
 // Start the server
 app.listen(PORT, () => {
