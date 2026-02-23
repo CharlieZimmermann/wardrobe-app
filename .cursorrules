@@ -1,0 +1,26 @@
+# StyleAi - Wardrobe App
+
+## Project Overview
+This is a full-stack **React** and **Node.js** wardrobe app (StyleAi) that helps users manage their clothing, get AI-powered outfit suggestions, and discover shopping recommendations.
+
+## Tech Stack
+- **Frontend:** React
+- **Backend:** Node.js (Express)
+- **Database & Storage:** Supabase
+- **AI / Outfit Generation:** Claude API
+- **Weather Data:** OpenWeatherMap API
+- **Shopping Recommendations:** RapidAPI (Amazon/Shopify/Zalando)
+
+## Developer Context
+The developer is a **beginner**. Always:
+- **Explain your decisions clearly** – Describe why you chose a particular approach or pattern
+- **Write clean, well-commented code** – Comments should help a beginner understand what the code does and why
+- Avoid jargon without explanation; prefer clarity over brevity
+
+## Workflow Rules
+
+### Before Starting Any Task
+1. **Always read `plan.md`** – The project build plan defines phases, features, and structure. Check the plan before implementing anything to ensure alignment with the roadmap.
+
+### Before Applying Changes
+1. **Always show diffs before applying changes** – Let the developer review what will change before edits are applied.
