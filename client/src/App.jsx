@@ -1,74 +1,68 @@
 /**
- * StyleAi - Main App Component
+ * StyleAi - Main App
  *
- * This component includes a connection test that calls the backend
- * to verify the frontend and backend are communicating correctly.
+ * Routes:
+ * - /login, /signup: Auth pages (redirect to dashboard if already logged in)
+ * - /dashboard: Protected - shows wardrobe and outfit features
+ * - /: Redirects based on auth state
  */
 
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import DashboardPage from './pages/DashboardPage';
 
-// Base URL for API calls - in development, Vite proxies /api to the backend
-const API_BASE = '/api';
+function AppRoutes() {
+  const { user, loading } = useAuth();
 
-function App() {
-  const [health, setHealth] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Call the backend health endpoint to verify the connection
-    fetch(`${API_BASE}/health`)
-      .then((res) => res.json())
-      .then((data) => {
-        setHealth(data);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setHealth(null);
-      });
-  }, []);
+  if (loading) {
+    return (
+      <div className="auth-loading">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 600 }}>
-      <h1>StyleAi</h1>
-      <p style={{ color: '#666', marginBottom: '1.5rem' }}>
-        Wardrobe app – full-stack connection test
-      </p>
+    <Routes>
+      {/* Redirect root to dashboard if logged in, otherwise to login */}
+      <Route
+        path="/"
+        element={user ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />}
+      />
 
-      {error && (
-        <div
-          style={{
-            padding: '1rem',
-            background: '#fee',
-            border: '1px solid #fcc',
-            borderRadius: 8,
-            marginBottom: '1rem',
-          }}
-        >
-          <strong>Connection error:</strong> {error}
-          <p style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
-            Make sure the backend is running: <code>cd server && npm run dev</code>
-          </p>
-        </div>
-      )}
+      {/* Auth pages - redirect to dashboard if already logged in */}
+      <Route
+        path="/login"
+        element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />}
+      />
+      <Route
+        path="/signup"
+        element={user ? <Navigate to="/dashboard" replace /> : <SignupPage />}
+      />
 
-      {health && (
-        <div
-          style={{
-            padding: '1rem',
-            background: '#efe',
-            border: '1px solid #cfc',
-            borderRadius: 8,
-          }}
-        >
-          <strong>Backend connected</strong>
-          <pre style={{ marginTop: '0.5rem', fontSize: '0.85rem', overflow: 'auto' }}>
-            {JSON.stringify(health, null, 2)}
-          </pre>
-        </div>
-      )}
-    </div>
+      {/* Protected routes - require login */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Catch-all: redirect to root */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
