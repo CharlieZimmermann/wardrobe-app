@@ -14,23 +14,23 @@ Phase 1 – MVP (Core Functionality)
 
 2. User Onboarding
 
- Create user signup and login pages
+ [x] Create user signup and login pages
 
- Implement authentication with Supabase Auth
+ [x] Implement authentication with Supabase Auth
 
- Build user profile form (style, body type, sizes, budget)
+ [ ] Build user profile form (style, body type, sizes, budget)
 
- Save user profile to database
+ [ ] Save user profile to database
 
-3. Wardrobe Upload
+3. Wardrobe Upload ✓
 
- Build wardrobe upload page
+ [x] Build wardrobe upload page
 
- Implement file upload to Supabase storage
+ [x] Implement file upload to Supabase storage
 
- Create database schema for clothing items
+ [x] Create database schema for clothing items
 
- Store item metadata (type, color, pattern, user ID)
+ [x] Store item metadata (type, color, pattern, user ID)
 
 4. Daily Outfit Suggestions
 
@@ -46,13 +46,13 @@ Phase 1 – MVP (Core Functionality)
 
 5. Dashboard
 
- Build user dashboard page
+ [x] Build user dashboard page
 
- Display uploaded wardrobe items
+ [x] Display uploaded wardrobe items
 
- Display daily outfit suggestions
+ [ ] Display daily outfit suggestions
 
- Allow viewing and removing items
+ [ ] Allow viewing and removing items
 
 Phase 2 – Enhanced AI & Wardrobe Gap Analysis
 1. Advanced Outfit Generation
