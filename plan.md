@@ -1,16 +1,16 @@
 StyleAi – Build Plan
 Phase 1 – MVP (Core Functionality)
-1. Project Setup
+1. Project Setup ✓
 
- Initialize Git repository
+ [x] Initialize Git repository
 
- Setup Node.js backend with Express
+ [x] Setup Node.js backend with Express
 
- Setup React frontend (create-react-app or Next.js)
+ [x] Setup React frontend (create-react-app or Next.js)
 
- Configure Supabase database
+ [x] Configure Supabase database
 
- Integrate environment variables (.env)
+ [x] Integrate environment variables (.env)
 
 2. User Onboarding
 

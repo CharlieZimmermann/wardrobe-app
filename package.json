@@ -1,0 +1,12 @@
+{
+  "name": "styleai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "StyleAi - AI-powered wardrobe app",
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "start:server": "cd server && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  }
+}
