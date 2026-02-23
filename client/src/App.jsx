@@ -3,16 +3,19 @@
  *
  * Routes:
  * - /login, /signup: Auth pages (redirect to dashboard if already logged in)
- * - /dashboard: Protected - shows wardrobe and outfit features
+ * - /dashboard, /wardrobe, /upload: Protected - wrapped with Navbar
  * - /: Redirects based on auth state
  */
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import AppLayout from './components/AppLayout';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
+import WardrobePage from './pages/WardrobePage';
+import UploadPage from './pages/UploadPage';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
@@ -43,15 +46,18 @@ function AppRoutes() {
         element={user ? <Navigate to="/dashboard" replace /> : <SignupPage />}
       />
 
-      {/* Protected routes - require login */}
+      {/* Protected routes - layout with Navbar (pathless layout) */}
       <Route
-        path="/dashboard"
         element={
           <ProtectedRoute>
-            <DashboardPage />
+            <AppLayout />
           </ProtectedRoute>
         }
-      />
+      >
+        <Route path="dashboard" element={<DashboardPage />} />
+        <Route path="wardrobe" element={<WardrobePage />} />
+        <Route path="upload" element={<UploadPage />} />
+      </Route>
 
       {/* Catch-all: redirect to root */}
       <Route path="*" element={<Navigate to="/" replace />} />

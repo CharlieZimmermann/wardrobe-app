@@ -129,37 +129,77 @@ body {
   text-decoration: underline;
 }
 
-/* Dashboard */
-.dashboard-page {
+/* App layout with Navbar */
+.app-layout {
   min-height: 100vh;
   background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.dashboard-header {
+.app-main {
+  flex: 1;
+  padding: 2rem 1.5rem;
+}
+
+/* Navbar */
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #eee;
+  background: #fff;
 }
 
-.dashboard-header h1 {
+.navbar-brand {
   font-size: 1.25rem;
   font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
 }
 
-.dashboard-header-right {
+.navbar-brand:hover {
+  color: #333;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.navbar-link {
+  padding: 0.5rem 1rem;
+  color: #666;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.navbar-link:hover {
+  color: #1a1a1a;
+  background: #f5f5f5;
+}
+
+.navbar-link.active {
+  color: #1a1a1a;
+  font-weight: 500;
+  background: #f0f0f0;
+}
+
+.navbar-user {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.dashboard-email {
-  font-size: 0.9rem;
+.navbar-email {
+  font-size: 0.85rem;
   color: #666;
 }
 
-.logout-button {
+.navbar-logout {
   padding: 0.5rem 1rem;
   background: transparent;
   border: 1px solid #ddd;
@@ -168,21 +208,150 @@ body {
   cursor: pointer;
 }
 
-.logout-button:hover {
+.navbar-logout:hover {
   background: #f5f5f5;
 }
 
-.dashboard-main {
-  padding: 2rem 1.5rem;
+/* Page content */
+.page {
+  max-width: 900px;
 }
 
-.dashboard-main h2 {
-  font-size: 1.5rem;
+.page h1 {
+  font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.dashboard-intro {
+.page-intro {
   color: #666;
   font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Loading and error states */
+.loading-state,
+.error-state {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+.error-state {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-radius: 8px;
+}
+
+/* Wardrobe grid */
+.wardrobe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.wardrobe-card {
+  background: #fafafa;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.wardrobe-card-image {
+  aspect-ratio: 1;
+  background: #eee;
+  position: relative;
+}
+
+.wardrobe-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wardrobe-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.wardrobe-card-info {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.wardrobe-card-type {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.wardrobe-card-color {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+/* Upload form */
+.upload-form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.upload-form input[type='text'],
+.upload-form input[type='file'],
+.upload-form select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.upload-form input:focus,
+.upload-form select:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.form-error {
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.submit-button {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #333;
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
