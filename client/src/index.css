@@ -355,3 +355,101 @@ body {
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+/* Weather section on dashboard */
+.weather-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.weather-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.weather-hint {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.weather-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.weather-input {
+  flex: 1;
+  max-width: 280px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.weather-input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.weather-button {
+  padding: 0.6rem 1rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.weather-button:hover {
+  background: #333;
+}
+
+.weather-loading {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.weather-error {
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.weather-card {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.weather-city {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.weather-temp {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.weather-condition {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.weather-description {
+  font-size: 0.95rem;
+  color: #666;
+  text-transform: capitalize;
+}

@@ -11,6 +11,7 @@ const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 const clothingRoutes = require('./routes/clothing');
 const outfitRoutes = require('./routes/outfits');
+const weatherRoutes = require('./routes/weather');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -53,6 +54,7 @@ app.get('/api/ping', (req, res) => {
 // Protected API routes (require Authorization: Bearer <token>)
 app.use('/api/clothing', clothingRoutes);
 app.use('/api/outfits', outfitRoutes);
+app.use('/api/weather', weatherRoutes);
 
 // Start the server
 app.listen(PORT, () => {
