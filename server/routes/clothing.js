@@ -150,6 +150,74 @@ router.get('/', requireAuth, async (req, res) => {
 });
 
 /**
+ * PATCH /api/clothing/:id
+ * Update a clothing item's metadata (item_type, color, style_tags, season).
+ * Photo cannot be changed via this endpoint.
+ */
+router.patch('/:id', requireAuth, async (req, res) => {
+  try {
+    const { supabase } = req;
+    const { id } = req.params;
+    const { item_type, color, style_tags, season } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ error: 'Item ID is required' });
+    }
+
+    const updates = {};
+    if (item_type !== undefined) {
+      if (typeof item_type !== 'string' || !item_type.trim()) {
+        return res.status(400).json({ error: 'item_type must be a non-empty string' });
+      }
+      updates.item_type = item_type.trim();
+    }
+    if (color !== undefined) {
+      updates.color = typeof color === 'string' ? color.trim() || null : null;
+    }
+    if (style_tags !== undefined) {
+      let tags = [];
+      if (style_tags) {
+        try {
+          tags = typeof style_tags === 'string' && style_tags.trim().startsWith('[')
+            ? JSON.parse(style_tags)
+            : style_tags.split(',').map((t) => t.trim()).filter(Boolean);
+        } catch {
+          tags = [].concat(style_tags).filter(Boolean);
+        }
+      }
+      updates.style_tags = tags;
+    }
+    if (season !== undefined) {
+      updates.season = typeof season === 'string' ? season.trim() || null : null;
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ error: 'No valid fields to update' });
+    }
+
+    const { data: item, error: dbError } = await supabase
+      .from('clothing_items')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (dbError) {
+      if (dbError.code === 'PGRST116') {
+        return res.status(404).json({ error: 'Clothing item not found' });
+      }
+      console.error('PATCH /api/clothing error:', dbError);
+      return res.status(500).json({ error: 'Failed to update clothing item' });
+    }
+
+    res.json(item);
+  } catch (err) {
+    console.error('PATCH /api/clothing error:', err);
+    res.status(500).json({ error: err.message || 'Internal server error' });
+  }
+});
+
+/**
  * DELETE /api/clothing/:id
  * Remove a clothing item by ID. Only the owner can delete.
  */

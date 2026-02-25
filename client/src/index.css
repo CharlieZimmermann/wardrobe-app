@@ -297,6 +297,89 @@ body {
   text-transform: capitalize;
 }
 
+.wardrobe-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #eee;
+}
+
+.wardrobe-card-btn {
+  flex: 1;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.wardrobe-card-btn:hover {
+  background: #f5f5f5;
+}
+
+.wardrobe-card-btn-edit {
+  color: #1a1a1a;
+}
+
+.wardrobe-card-btn-delete {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.wardrobe-card-btn-delete:hover {
+  background: #fef2f2;
+}
+
+.wardrobe-card-btn-save {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+.wardrobe-card-btn-save:hover {
+  background: #333;
+}
+
+.wardrobe-edit-form {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #fafafa;
+}
+
+.wardrobe-edit-form label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.wardrobe-edit-form input,
+.wardrobe-edit-form select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.wardrobe-edit-form input:focus,
+.wardrobe-edit-form select:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.wardrobe-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.wardrobe-edit-actions .wardrobe-card-btn {
+  flex: 1;
+}
+
 /* Upload form */
 .upload-form {
   max-width: 400px;
@@ -452,4 +535,142 @@ body {
   font-size: 0.95rem;
   color: #666;
   text-transform: capitalize;
+}
+
+/* Outfit of the Day */
+.outfit-form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.outfit-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.outfit-form-row label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.outfit-form-row input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.outfit-form-row input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.outfit-display {
+  margin-top: 2rem;
+}
+
+.outfit-weather {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.outfit-weather-city {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.outfit-weather-temp {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.outfit-weather-condition {
+  font-size: 0.95rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.outfit-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.outfit-item-card {
+  background: #fafafa;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.outfit-item-image {
+  aspect-ratio: 1;
+  background: #eee;
+  position: relative;
+}
+
+.outfit-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.outfit-item-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.outfit-item-info {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.outfit-item-type {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.outfit-item-color {
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.outfit-explanation {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.outfit-explanation h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.outfit-explanation p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
 }

@@ -13,6 +13,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:5000',
         changeOrigin: true,
+        timeout: 60000, // 60s for outfit generation (Claude API can be slow)
       },
     },
   },

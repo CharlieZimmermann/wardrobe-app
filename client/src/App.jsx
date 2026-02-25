@@ -3,7 +3,7 @@
  *
  * Routes:
  * - /login, /signup: Auth pages (redirect to dashboard if already logged in)
- * - /dashboard, /wardrobe, /upload: Protected - wrapped with Navbar
+ * - /dashboard, /outfit-of-the-day, /wardrobe, /upload: Protected - wrapped with Navbar
  * - /: Redirects based on auth state
  */
 
@@ -16,6 +16,7 @@ import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import WardrobePage from './pages/WardrobePage';
 import UploadPage from './pages/UploadPage';
+import OutfitOfTheDayPage from './pages/OutfitOfTheDayPage';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
@@ -56,6 +57,7 @@ function AppRoutes() {
       >
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="wardrobe" element={<WardrobePage />} />
+        <Route path="outfit-of-the-day" element={<OutfitOfTheDayPage />} />
         <Route path="upload" element={<UploadPage />} />
       </Route>
 
