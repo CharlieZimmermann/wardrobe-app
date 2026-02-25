@@ -10,6 +10,7 @@ const navItems = [
   { to: '/outfit-of-the-day', label: 'Outfit of the Day' },
   { to: '/wardrobe', label: 'Wardrobe' },
   { to: '/upload', label: 'Upload' },
+  { to: '/settings', label: 'Settings' },
 ];
 
 export default function Navbar() {

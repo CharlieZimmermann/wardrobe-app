@@ -12,6 +12,7 @@ const { createClient } = require('@supabase/supabase-js');
 const clothingRoutes = require('./routes/clothing');
 const outfitRoutes = require('./routes/outfits');
 const weatherRoutes = require('./routes/weather');
+const userRoutes = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -55,6 +56,7 @@ app.get('/api/ping', (req, res) => {
 app.use('/api/clothing', clothingRoutes);
 app.use('/api/outfits', outfitRoutes);
 app.use('/api/weather', weatherRoutes);
+app.use('/api/user', userRoutes);
 
 // Start the server
 app.listen(PORT, () => {

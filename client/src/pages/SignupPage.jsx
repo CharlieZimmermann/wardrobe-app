@@ -35,7 +35,7 @@ export default function SignupPage() {
       return;
     }
 
-    navigate('/dashboard', { replace: true });
+    navigate('/onboarding', { replace: true });
     setLoading(false);
   }
 

@@ -41,7 +41,14 @@ router.post('/generate', requireAuth, async (req, res) => {
       });
     }
 
-    // 2. Fetch current weather
+    // 2. Fetch user profile for style preference and gender
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('style_preference, gender, body_type')
+      .eq('user_id', req.user.id)
+      .single();
+
+    // 3. Fetch weather
     const apiKey = process.env.OPENWEATHER_KEY;
     if (!apiKey) {
       return res.status(500).json({ error: 'Weather API not configured' });
@@ -71,7 +78,7 @@ router.post('/generate', requireAuth, async (req, res) => {
     const condition = weatherData.weather?.[0]?.main || 'Unknown';
     const description = weatherData.weather?.[0]?.description || 'No description';
 
-    // 3. Call Claude API
+    // 4. Call Claude API
     const anthropicKey = (process.env.ANTHROPIC_KEY || '').trim();
     if (!anthropicKey) {
       return res.status(500).json({ error: 'Claude API not configured. Add ANTHROPIC_KEY to .env' });
@@ -83,7 +90,18 @@ router.post('/generate', requireAuth, async (req, res) => {
       .map((i) => `- id: ${i.id}, type: ${i.item_type}, color: ${i.color || 'unknown'}, style_tags: ${JSON.stringify(i.style_tags || [])}, season: ${i.season || 'all'}`)
       .join('\n');
 
+    const styleContext = profile?.style_preference
+      ? `\nUSER STYLE PREFERENCE: ${profile.style_preference}. Prioritize pieces that match this aesthetic.`
+      : '';
+    const genderContext = profile?.gender
+      ? `\nUSER GENDER: ${profile.gender}. Men's and women's fashion differ significantly—choose pieces and styling appropriate for this context.`
+      : '';
+    const bodyContext = profile?.body_type
+      ? `\nUSER BODY TYPE: ${profile.body_type}. Consider proportion and fit for this body type.`
+      : '';
+
     const prompt = `You are a fashion stylist. Suggest a complete outfit from the user's wardrobe below.
+${styleContext}${genderContext}${bodyContext}
 
 WARDROBE (each item has an id - use these exact IDs in your response):
 ${wardrobeDescription}
